@@ -46,13 +46,19 @@ export default {
     };
   },
   methods: {
-    inputPublicKey() {},
-    inputPrivateKey() {},
-    async encryption(str) {
-      return await this.nRSA.encryptPrivate(str, "base64");
+    inputPublicKey() {
+      this.nRSA.importKey(this.key.publicKey, "pkcs8-public-pem");
     },
+    inputPrivateKey() {
+      this.nRSA.importKey(this.key.privateKey, "pkcs8-private-pem");
+    },
+    // 加密
+    async encryption(str) {
+      return await this.nRSA.encrypt(str, "base64");
+    },
+    // 解密
     async decryption(str) {
-      return await this.nRSA.decryptPublic(str);
+      return await this.nRSA.decrypt(str);
     },
     encrypt() {
       this.encryption(this.decryptData)
@@ -75,6 +81,7 @@ export default {
   },
   created() {
     this.nRSA.importKey(this.key.privateKey, "pkcs8-private-pem");
+    this.nRSA.importKey(this.key.publicKey, "pkcs8-public-pem");
     this.nRSA.setOptions({ encryptionScheme: "pkcs1" });
   }
 };
