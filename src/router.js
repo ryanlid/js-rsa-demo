@@ -14,6 +14,16 @@ export default new Router({
       component: Home
     },
     {
+      path: "/rsaencrypt",
+      name: "rsaencrypt",
+      component: () => import("./views/rsaencrypt.vue")
+    },
+    {
+      path: "/node-rsa",
+      name: "node-rsa",
+      component: () => import("./views/node-rsa.vue")
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting
