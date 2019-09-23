@@ -1,0 +1,45 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/project
+
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - admin-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - admin-
+      - run:
+          name: Install && Build
+          command: |
+            yarn install && yarn build && pwd && ls
+      - save_cache:
+          paths:
+            - node_modules
+          key: admin-{{ checksum "package.json" }}
+
+      - run:
+          name: Update System
+          command: |
+            sudo apt-get update && sudo apt-get install rsync
+      - deploy:
+          name: Deploy via ssh
+          command: |
+            mkdir -p ~/.ssh
+            touch ~/.ssh/known_hosts
+            { ssh-keyscan $SSH_HOST 2> /dev/null; } >> ~/.ssh/known_hosts
+            pwd
+            ls
+            if [ ${CIRCLE_BRANCH} = "master" ];then
+                rsync -az -v --delete -e ssh /home/circleci/project/dist/* $SSH_USER@$SSH_HOST:/var/www/js-rsa/
+            else
+                echo "Not master branch"
+            fi
