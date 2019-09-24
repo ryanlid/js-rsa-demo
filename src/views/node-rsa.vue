@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1 class="text-center">RSA 加密解密 -- node-rsa</h1>
+    <div class="text-center lib-statement">
+      依赖库
+      <a href="https://github.com/rzcoder/node-rsa" target="_blank">node-rsa</a>
+    </div>
     <div class="box">
       <div class="box-item">
         <div>用于加密的公钥：</div>
@@ -22,8 +25,8 @@
       </div>
     </div>
     <div class="text-center">
-      <button @click="encrypt">加密</button>
-      <button @click="decrypt">解密</button>
+      <button class="btn" @click="encrypt">加密</button>
+      <button class="btn" @click="decrypt">解密</button>
     </div>
   </div>
 </template>
@@ -86,17 +89,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.box {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-}
-.box-item {
-  width: 48%;
-}
-textarea {
-  width: 100%;
-}
-</style>
