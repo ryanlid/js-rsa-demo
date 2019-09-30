@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 class="text-center">RSA 加密解密</h1>
+    <h1 class="text-center">JavaScript RSA 加密解密</h1>
     <div class="text-center">
       <router-link to="/">Home</router-link> |
       <router-link to="/rsaencrypt">rsaencrypt</router-link> |
@@ -19,7 +19,7 @@
   color: #2c3e50;
 }
 
-h1{
+h1 {
   font-size: 1.5em;
 }
 .text-center {

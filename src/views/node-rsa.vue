@@ -7,21 +7,39 @@
     <div class="box">
       <div class="box-item">
         <div>用于加密的公钥：</div>
-        <textarea v-model="key.publicKey" @input="inputPublicKey" rows="15"></textarea>
+        <textarea
+          v-model="key.publicKey"
+          @input="inputPublicKey"
+          rows="15"
+          placeholder="请输入公钥"
+        ></textarea>
       </div>
       <div class="box-item">
         <div>用于解密的私钥：</div>
-        <textarea v-model="key.privateKey" @input="inputPrivateKey" rows="15"></textarea>
+        <textarea
+          v-model="key.privateKey"
+          @input="inputPrivateKey"
+          rows="15"
+          placeholder="请输入私钥"
+        ></textarea>
       </div>
     </div>
     <div class="box">
       <div class="box-item">
         <div>明文：</div>
-        <textarea v-model="decryptData" rows="20"></textarea>
+        <textarea
+          v-model="decryptData"
+          rows="20"
+          placeholder="请输入明文"
+        ></textarea>
       </div>
       <div class="box-item">
         <div>密文：</div>
-        <textarea v-model="encryptData" rows="20"></textarea>
+        <textarea
+          v-model="encryptData"
+          rows="20"
+          placeholder="请输入密文"
+        ></textarea>
       </div>
     </div>
     <div class="text-center">
